@@ -1,0 +1,22 @@
+Name
+    m3ua get maxasforroute
+SYNOPSIS
+    m3ua get maxasforroute stackname <stack-name>
+DESCRIPTION
+    This command is used to retrieve the current settings of the parameter
+    'maxasforroute'. The 'maxasforroute' parameter is used to specify
+    the maximum routes for destination point code.
+    Every destination point code should be configured in M3UA with the
+    corresponding AS. The parameter 'maxasforroute' controls the
+    maximum number of AS that can be used to route the message to the
+    same Destination Point Code.
+    It is better to always maintain this parameter as an even number for better
+    load-sharing and a maximum of 2 is standard and widely accepted. You should
+    not change this value if there is at least one route defined, else it will
+    throw Exception for that route. You have to delete all the routes,
+    change this property and redefine routes.
+    The settings can be modified only when the M3UA Stack is not running.
+    To modify this parameter you must invoke the setter function
+    directly from the code or if you are using the JBoss AS, you can add a
+    property to the XML descriptor file jboss-beans.xml. You cannot change the
+    settings through the CLI.

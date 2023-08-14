@@ -11,24 +11,22 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.mediatel.shellclient.config.ShellHelper;
 
 @Slf4j
 @Component
 public class NettyClient implements Runnable{
     public ChannelFuture future;
-    private EventLoopGroup eventGroup = new NioEventLoopGroup();
+    private final EventLoopGroup eventGroup = new NioEventLoopGroup();
 
     private String host;
     private int port;
 
+    private boolean connected;
+
     private final ClientHandler clientHandler;
 
     public NettyClient(ClientHandler clientHandler) {
-        this.host = host;
-        this.port = port;
         this.clientHandler = clientHandler;
     }
 
@@ -40,6 +38,10 @@ public class NettyClient implements Runnable{
         this.port = port;
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
+
     public void run() {
 
 
@@ -49,15 +51,17 @@ public class NettyClient implements Runnable{
         bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
         bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
-            public void initChannel(SocketChannel ch) throws Exception {
+            public void initChannel(SocketChannel ch) {
                 ch.pipeline().addLast(new StringDecoder(), new StringEncoder(), clientHandler);
             }
         });
 
         try {
             future = bootstrap.connect(host, port).sync();
+            connected = true;
         } catch (InterruptedException e) {
             clientHandler.setServerAnswer("Error: " + e.getMessage());
+            connected = false;
         }
 
     }
@@ -65,5 +69,6 @@ public class NettyClient implements Runnable{
     public void shutdown() throws Exception {
         eventGroup.shutdownGracefully();
         future.channel().closeFuture().sync();
+        connected = false;
     }
 }

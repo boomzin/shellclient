@@ -1,0 +1,42 @@
+PARAMETER NAME
+    maxsequencenumber
+Retrieve the current settings of the parameter 'maxsequencenumber' by issuing the
+command:
+
+    m3ua get maxsequencenumber
+
+Type "m3ua get maxsequencenumber help" to display details.
+
+
+PARAMETER NAME
+    deliverymessagethreadcount
+Retrieve the current settings of the parameter 'maxasforroute' by issuing the
+command:
+
+    m3ua get deliverymessagethreadcount
+
+Type "m3ua get deliverymessagethreadcount help" to display details.
+
+
+PARAMETER NAME
+    maxasforroute
+Retrieve the current settings of the parameter 'maxasforroute' by issuing the
+command:
+
+    m3ua get maxasforroute
+
+Type "m3ua get maxasforroute help" to display details.
+
+
+PARAMETER NAME
+    routinglabelformat
+Retrieve the current settings of the parameter 'routinglabelformat' by issuing the
+command:
+
+    m3ua get routinglabelformat
+
+Type "m3ua get routinglabelformat help" to display details.
+
+
+In addition, those parameters cannot be modified through the CLI.
+You will have to invoke the setter function directly from the source code.

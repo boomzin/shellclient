@@ -1,0 +1,16 @@
+Name
+    m3ua asp stop
+SYNOPSIS
+    m3ua asp stop <asp-name> stackname <stack-name>
+DESCRIPTION
+    This command is used to stop a currently running ASP.
+PARAMETERS
+    Standard Parameters
+    <asp-name>    -    Name of the ASP to be stopped.
+    Optional Parameters
+    <stack-name>    -    Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor
+        will be used.
+EXAMPLES
+    m3ua asp stop ASP1
+    The above command will stop the ASP identified by the name ASP1.

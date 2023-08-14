@@ -1,0 +1,44 @@
+PARAMETER NAME
+    show
+View the details of all configured M3UA Application Server Processes by issuing the
+command:
+
+    m3ua asp show
+
+Type "m3ua asp show help" to display details.
+
+
+PARAMETER NAME
+    create
+Create a new M3UA ASP by issuing the command:
+
+    m3ua asp create
+
+Type "m3ua asp create help" to display details.
+
+
+PARAMETER NAME
+    destroy
+Delete an existing M3UA ASP by issuing the command:
+
+    m3ua asp destroy
+
+Type "m3ua asp destroy help" to display details.
+
+
+PARAMETER NAME
+    start
+Start an existing ASP by issuing the command:
+
+    m3ua asp start
+
+Type "m3ua asp start help" to display details.
+
+
+PARAMETER NAME
+    stop
+Stop a currently running ASP by issuing the command:
+
+    m3ua asp stop
+
+Type "m3ua asp stop help" to display details.

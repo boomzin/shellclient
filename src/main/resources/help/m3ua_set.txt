@@ -1,0 +1,38 @@
+PARAMETER NAME
+    heartbeattime
+Set the current settings of the parameter 'heartbeattime' by issuing the
+command:
+
+    m3ua set heartbeattime
+
+Type "m3ua set heartbeattime help" to display details.
+
+
+PARAMETER NAME
+    statisticsenabled
+Set the current settings of the parameter 'statisticsenabled' by issuing the
+command:
+
+    m3ua set statisticsenabled
+
+Type "m3ua set statisticsenabled help" to display details.
+
+
+PARAMETER NAME
+    routingkeymanagementenabled
+Set the current settings of the parameter 'routingkeymanagementenabled' by issuing the
+command:
+
+    m3ua set routingkeymanagementenabled
+
+Type "m3ua set routingkeymanagementenabled help" to display details.
+
+
+PARAMETER NAME
+    uselsbforlinksetselection
+Set the current settings of the parameter 'uselsbforlinksetselection' by issuing the
+command:
+
+    m3ua set uselsbforlinksetselection
+
+Type "m3ua set uselsbforlinksetselection help" to display details.

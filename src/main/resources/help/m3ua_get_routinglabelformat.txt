@@ -1,0 +1,13 @@
+Name
+    m3ua get routinglabelformat
+SYNOPSIS
+    m3ua get routinglabelformat stackname <stack-name>
+DESCRIPTION
+    Returns RoutingLabelFormat option.
+    Possible values are:
+        ITU,
+        ANSI_Sls8Bit,
+        ANSI_Sls5Bit,
+        Japan_TTC_DDI,
+        Japan_NTT,
+        China.

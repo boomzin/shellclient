@@ -1,0 +1,17 @@
+Name
+    m3ua get maxsequencenumber
+SYNOPSIS
+    m3ua get maxsequencenumber stackname <stack-name>
+DESCRIPTION
+    This command is used to retrieve the current settings of the parameter
+    'maxsequencenumber'. The 'maxsequencenumber' parameter is used to specify
+    the maximum sequence number used for load-balancing algorithm.
+    Sequence number or Signalling Link Selection (SLS) is used for load-balancing
+    between ASPs in AS and also between various AS for the same point-code.
+    The parameter 'maxsequencenumber' controls the maximum SLS that should be
+    used for this. It is safe to leave it at 256.
+    The settings can be modified only when the M3UA Stack is not running.
+    To modify this parameter you must invoke the setter function
+    directly from the code or if you are using the JBoss AS, you can add a
+    property to the XML descriptor file jboss-beans.xml. You cannot change the
+    settings through the CLI.

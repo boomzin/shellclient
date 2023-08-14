@@ -1,0 +1,13 @@
+Name
+    m3ua asp show
+SYNOPSIS
+    m3ua asp show stackname <stack-name>
+DESCRIPTION
+    This command is used to view the details of all configured Application Server
+    Processes. The information displayed will include the name, the SCTP Association
+    name and if it is started or stopped.
+PARAMETERS
+    Optional Parameters
+    <stack-name>    -    Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor
+        will be used.
