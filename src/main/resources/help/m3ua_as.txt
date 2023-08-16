@@ -1,0 +1,43 @@
+PARAMETER NAME
+    show
+View the details of all configured M3UA Application Servers by issuing the command:
+
+    m3ua as show
+
+Type "m3ua as show help" to display details.
+
+
+PARAMETER NAME
+    create
+Create a new M3UA AS by issuing the command:
+
+    m3ua as create
+
+Type "m3ua as create help" to display details.
+
+
+PARAMETER NAME
+    destroy
+Delete an existing M3UA Application Server instance by issuing the command:
+
+    m3ua as destroy
+
+Type "m3ua as destroy help" to display details.
+
+
+PARAMETER NAME
+    add
+Assign an ASP to an AS by issuing the command:
+
+    m3ua as add
+
+Type "m3ua as add help" to display details.
+
+
+PARAMETER NAME
+    remove
+Unassign an ASP from an AS by issuing the connect command:
+
+    m3ua as remove
+
+Type "m3ua as remove help" to display details.

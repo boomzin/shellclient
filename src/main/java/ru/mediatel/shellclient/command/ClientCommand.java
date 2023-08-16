@@ -45,6 +45,20 @@ public class ClientCommand {
             "uselsbforlinksetselection"
     ));
 
+    private final Set<String> m3uaAsParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "create",
+            "destroy",
+            "add",
+            "remove"
+    ));
+
+    private final Set<String> m3uaRouteParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "add",
+            "remove"
+    ));
+
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
 
@@ -218,6 +232,50 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("m3ua_set");
+            }
+        }
+        @ShellMethod(value = "m3ua as 'parameter'. Set m3ua parameters.\n" +
+                "Type \"m3ua as help\" to display list of parameters.\n" +
+                "Type \"m3ua as 'parameter' help\" to display detail of parameter.\n", key = "m3ua as")
+        @ShellMethodAvailability("connectedCheck")
+        public void m3ua_as(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && m3uaAsParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("m3ua_as_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("m3ua as " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("m3ua_as");
+            }
+        }
+        @ShellMethod(value = "m3ua route 'parameter'. Set m3ua parameters.\n" +
+                "Type \"m3ua route help\" to display list of parameters.\n" +
+                "Type \"m3ua route 'parameter' help\" to display detail of parameter.\n", key = "m3ua route")
+        @ShellMethodAvailability("connectedCheck")
+        public void m3ua_route(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && m3uaRouteParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("m3ua_route_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("m3ua route " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("m3ua_route");
             }
         }
     }

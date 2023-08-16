@@ -1,0 +1,17 @@
+Name
+    m3ua route remove
+SYNOPSIS
+    m3ua route remove <as-name> <dpc> <opc> <si> stackname <stack-name>
+DESCRIPTION
+    This command is used to remove a previously configured route.
+PARAMETERS
+    Standard Parameters
+    <as-name>    - Name of the AS assigned to route message for this dpc.
+    <dpc>    - Destination Point Code.
+    <opc>    - Originating Point Code.
+    <si>    - Service Indicator.
+    Optional Parameters
+    <stack-name>    - Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor will be used.
+EXAMPLES
+    m3ua route remove AS1 2 -1 -1

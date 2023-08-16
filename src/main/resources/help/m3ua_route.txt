@@ -1,0 +1,25 @@
+PARAMETER NAME
+    show
+View the details of all configured M3UA Routes by issuing the command:
+
+    m3ua route show
+
+Type "m3ua route show help" to display details.
+
+
+PARAMETER NAME
+    add
+Create a new M3UA Route by issuing the command:
+
+    m3ua route add
+
+Type "m3ua route add help" to display details.
+
+
+PARAMETER NAME
+    remove
+Delete a M3UA Route by issuing the connect command:
+
+    m3ua route remove
+
+Type "m3ua route remove help" to display details.
