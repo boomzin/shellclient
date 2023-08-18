@@ -87,26 +87,13 @@ public class ClientCommand {
             "cc_blockingoutgoungsccpmessages"
     ));
 
-    private final Set<String> sccpSapParameters = new HashSet<>(Arrays.asList(
+    private final Set<String> sccpExtensionParameters = new HashSet<>(Arrays.asList(
             "show",
             "create",
             "modify",
             "delete"
     ));
 
-    private final Set<String> sccpDestParameters = new HashSet<>(Arrays.asList(
-            "show",
-            "create",
-            "modify",
-            "delete"
-    ));
-
-    private final Set<String> sccpAddressParameters = new HashSet<>(Arrays.asList(
-            "show",
-            "create",
-            "modify",
-            "delete"
-    ));
 
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
@@ -378,7 +365,7 @@ public class ClientCommand {
                 "Type \"sccp sap 'parameter' help\" to display detail of parameter.\n", key = "sccp sap")
         @ShellMethodAvailability("connectedCheck")
         public void sccp_sap(@ShellOption(arity = 10) String[] args) {
-            if (args.length > 0 && sccpSapParameters.contains(args[0])) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
                 String command = String.join(" ", args);
                 if (command.contains("help")) {
                     printHelp("sccp_sap_" + args[0]);
@@ -401,7 +388,7 @@ public class ClientCommand {
                 "Type \"sccp dest 'parameter' help\" to display detail of parameter.\n", key = "sccp dest")
         @ShellMethodAvailability("connectedCheck")
         public void sccp_dest(@ShellOption(arity = 10) String[] args) {
-            if (args.length > 0 && sccpDestParameters.contains(args[0])) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
                 String command = String.join(" ", args);
                 if (command.contains("help")) {
                     printHelp("sccp_dest_" + args[0]);
@@ -424,7 +411,7 @@ public class ClientCommand {
                 "Type \"sccp address 'parameter' help\" to display detail of parameter.\n", key = "sccp address")
         @ShellMethodAvailability("connectedCheck")
         public void sccp_address(@ShellOption(arity = 10) String[] args) {
-            if (args.length > 0 && sccpAddressParameters.contains(args[0])) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
                 String command = String.join(" ", args);
                 if (command.contains("help")) {
                     printHelp("sccp_address_" + args[0]);
@@ -439,6 +426,29 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_address");
+            }
+        }
+
+        @ShellMethod(value = "sccp rule 'parameter'. Handle SCCP Rules.\n" +
+                "Type \"sccp rule help\" to display list of parameters.\n" +
+                "Type \"sccp rule 'parameter' help\" to display detail of parameter.\n", key = "sccp rule")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_rule(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_rule_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp rule " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_rule");
             }
         }
 

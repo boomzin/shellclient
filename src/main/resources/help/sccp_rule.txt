@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp rule show
+Type "sccp rule show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp rule create
+Type "sccp rule create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp rule modify
+Type "sccp rule modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp rule delete
+Type "sccp rule delete help" to display details.

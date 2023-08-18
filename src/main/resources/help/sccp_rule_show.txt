@@ -1,0 +1,15 @@
+Name
+    sccp rule show
+SYNOPSIS
+    sccp rule show id <id> stackname <stack-name>
+DESCRIPTION
+    This command is used to view the details of all Rules configured. If an <id> is
+    specified in the command, it will only display the details of the Rule identified
+    by the value of the 'id' specified.
+PARAMETERS
+    Optional Parameters
+    <id>    -    The id of the Rule whose details are to be displayed.
+        If this parameter is not specified, the details of all
+        configured Rules will be displayed.
+    <stack-name>    -   Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor will be used.
