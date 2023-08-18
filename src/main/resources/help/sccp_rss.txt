@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp rss show
+Type "sccp rss show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp rss create
+Type "sccp rss create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp rss modify
+Type "sccp rss modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp rss delete
+Type "sccp rss delete help" to display details.

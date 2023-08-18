@@ -478,6 +478,29 @@ public class ClientCommand {
             }
         }
 
+        @ShellMethod(value = "sccp rss 'parameter'. Handle Remote Sub-Systems Points.\n" +
+                "Type \"sccp rss help\" to display list of parameters.\n" +
+                "Type \"sccp rss 'parameter' help\" to display detail of parameter.\n", key = "sccp rss")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_rss(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_rss_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp rss " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_rss");
+            }
+        }
+
 
     }
 
