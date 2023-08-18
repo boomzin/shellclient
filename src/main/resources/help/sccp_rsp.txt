@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp rsp show
+Type "sccp rsp show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp rsp create
+Type "sccp rsp create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp rsp modify
+Type "sccp rsp modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp rsp delete
+Type "sccp rsp delete help" to display details.

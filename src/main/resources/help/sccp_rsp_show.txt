@@ -1,0 +1,18 @@
+Name
+    sccp rsp show
+SYNOPSIS
+    sccp rsp show id <id> stackname <stack-name>
+DESCRIPTION
+    This command is used to view the details of all configured Remote Signaling
+    Points.
+    If an <id> is specified in the command, it will only display the details of the
+    Remote Signaling Point identified by the value of the 'id' specified.
+PARAMETERS
+    Optional Parameters
+    <id>    -    The id of the Remote Signaling Point whose details are
+        to be displayed. If this parameter is not specified, the
+        details of all configured Remote Signaling Points will be
+        displayed.
+    <stack-name>    -    Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor
+        will be used.

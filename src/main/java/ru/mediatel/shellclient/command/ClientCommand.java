@@ -2,15 +2,18 @@ package ru.mediatel.shellclient.command;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.*;
-import org.springframework.util.ResourceUtils;
 import ru.mediatel.shellclient.client.ClientHandler;
 import ru.mediatel.shellclient.client.NettyClient;
 import ru.mediatel.shellclient.config.CustomPromptProvider;
 import ru.mediatel.shellclient.config.ShellHelper;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -109,9 +112,9 @@ public class ClientCommand {
     protected void printHelp(String commandLine) {
         BufferedReader helpInput;
         try {
-            File file = ResourceUtils.getFile("classpath:" + "help/" + commandLine + ".txt");
-            helpInput = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
+            InputStream resource = new ClassPathResource("help/" + commandLine + ".txt").getInputStream();
+            helpInput = new BufferedReader(new InputStreamReader(resource));
+        } catch (Exception e) {
             shellHelper.printWarning(e.getMessage());
             return;
         }
@@ -449,6 +452,29 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_rule");
+            }
+        }
+
+        @ShellMethod(value = "sccp rsp 'parameter'. Handle Remote Signaling Points.\n" +
+                "Type \"sccp rsp help\" to display list of parameters.\n" +
+                "Type \"sccp rsp 'parameter' help\" to display detail of parameter.\n", key = "sccp rsp")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_rsp(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_rsp_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp rsp " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_rsp");
             }
         }
 
