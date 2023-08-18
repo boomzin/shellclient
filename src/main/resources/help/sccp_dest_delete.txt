@@ -1,0 +1,17 @@
+Name
+    sccp dest delete
+SYNOPSIS
+    sccp dest delete <sap-id> <id> stackname <stack-name>
+DESCRIPTION
+    This command is used to remove a previously defined Destination from a Service Access Point.
+PARAMETERS
+    Standard Parameters
+    <sap-id>    -   The identifier of the SAP whose Destination is being deleted.
+    <id>    -   The identifier of the Destination that is being deleted.
+    Optional Parameters
+    <stack-name>    -    Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor will be used.
+EXAMPLES
+    sccp dest delete 1 1
+        The above command will delete the Destination identified by the number '1' from
+        the SAP identified by the number '1'.
