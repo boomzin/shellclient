@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp sap show
+Type "sccp sap show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp sap create
+Type "sccp sap create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp sap modify
+Type "sccp sap modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp sap delete
+Type "sccp sap delete help" to display details.

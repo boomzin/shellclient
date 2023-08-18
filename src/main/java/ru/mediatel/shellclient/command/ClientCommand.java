@@ -87,6 +87,13 @@ public class ClientCommand {
             "cc_blockingoutgoungsccpmessages"
     ));
 
+    private final Set<String> sccpSapParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "create",
+            "modify",
+            "delete"
+    ));
+
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
 
@@ -349,6 +356,29 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_set");
+            }
+        }
+
+        @ShellMethod(value = "sccp sap 'parameter'. Handle Service Access Points.\n" +
+                "Type \"sccp sap help\" to display list of parameters.\n" +
+                "Type \"sccp sap 'parameter' help\" to display detail of parameter.\n", key = "sccp sap")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_sap(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpSapParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_sap_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp sap " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_sap");
             }
         }
 
