@@ -1,0 +1,15 @@
+Name
+    sccp address delete
+SYNOPSIS
+    sccp address delete <id> stackname <stack-name>
+DESCRIPTION
+    This command is used to remove previously defined addresses.
+PARAMETERS
+    Standard Parameters
+    <id>    -    The identifier of the address that is being deleted.
+    Optional Parameters
+    <stack-name>    -    Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor will be used.
+EXAMPLES
+    sccp address delete 1
+        The above command will delete the address identified by the number '1'.

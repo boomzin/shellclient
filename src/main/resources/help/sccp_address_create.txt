@@ -1,0 +1,125 @@
+Name
+    sccp address create
+SYNOPSIS
+    sccp address create <id> <address-indicator> <point-code> <subsystem-number> <translation-type> <numbering-plan> <nature-of-address-indicator> <digits> stackname <stack-name>
+DESCRIPTION
+    This command is used to create a new primary address or backup address of
+    translation. You can create a new newCallingParty address as well
+    using this command. The global title address information of this command is
+    combined with the global title being translated by examining the mask provided in the
+    'sccp rule create' command.
+PARAMETERS
+    Standard Parameters
+    <id>    -    A unique number to identify this address.
+    <address-indicator>    -    The address indicator is the first field in a SCCP
+        Party Address (called/calling) and is one octet in
+        length. Its function is to indicate which
+        information elements are present so that the
+        address can be interpreted. In other words, it
+        indicates the type of addressing information that
+        is to be found in the address field. The
+        addressing information from the original global
+        title is then compared with the passed address
+        information to match the rule.
+        SCCP ADDRESS INDICATOR
+        --------------------------------
+        | 8 | 7 | 6 | 5 | 4 |3 | 2 | 1 |
+        --------------------------------
+        Bit '1': PC Indicator
+            (1 = included)
+        Bit '2': SSN Indicator
+            (1 = included)
+        Bit '3 - 6' : GT Indicator
+            (0000 = GT not included)
+            (0001 = GT includes
+            Nature of Address)
+            (0010 = GT includes
+            Translation Type)
+            (0011 = GT includes
+            Translation Type,
+            Numbering Plan and
+            Encoding Scheme)
+            (0100 = GT includes
+            Translation Type,
+            Numbering Plan and
+            Encoding Scheme and
+            Nature of Address)
+        Bit '7' : Routing Indicator
+            (0 = Route on GT,
+            1 = Route on PC + SSN)
+        Bit '8' : Reserved for National use.
+            Only two fields of Address Indicator is used now for GTT:
+            - GT Indicator (this is used for GlobalTitle type that
+            will be created)
+            - Routing Indicator bit (0 = Route on GT, 1 = Route on
+            PC + SSN)
+            GT Indicator for ITU-T network that is mostly used is -
+            0100 (GT includes Translation Type, Numbering Plan and
+            Encoding Scheme and Nature of Address). Digital value
+            for it is - 16.
+            For 0100 GT Indicator we will use two possible values:
+            16 - 0100 GT Indicator and Route on GT
+            80 - 0100 GT Indicator and Route on PC + SSN
+            Even when SCCP stack works in ANSI mode Address Indicator
+            value for CLI and GUI must have values that we use for
+            ITU-T mode.
+    <point-code>    -    MTP Signaling Point Code.
+        This parameter contains a point code to which message will
+        be routed after GTT (DPC field).
+        This parameter is mandatory.
+    <subsystem-number>    - This parameter contains SSN which will be placed
+        into CalledPartyAddress. If you set this parameter to "0",
+        SSN from CalledPartyAddress of an original message will be
+        put into CalledPartyAddress.
+    <translation-type>    -    This is ignored if GT Indicator is 0000 or 0001.
+        TRANSLATION TYPE VALUES
+        Value
+        Description
+        ----------------------------------
+        0        Unknown
+        1 - 63          International Service
+        64 - 127        Spare
+        128 - 254       National Network Specific
+        255             Reserved for Expansion
+        Value of this parameter will be placed into
+        CalledPartyAddress. This parameter is mandatory if GT
+        Indicator suppose this parameter is included into GT.
+        Most used value: 0 - translation-type - Unknown
+    <numbering-plan>    -    The Number Plan (NP) field specifies the numbering
+        plan which the address information follows. This
+        is ignored if GT Indicator is 0000, 0001 or 0010.
+        Value of this parameter will be placed into
+        CalledPartyAddress. This parameter is mandatory if GT
+        Indicator suppose this parameter is included into GT.
+        Most used value: 1 - numbering-plan - ISDN/telephony
+    <nature-of-address>    -    The Nature of Address Indicator (NAI) field
+        defines the address range for a specific numbering
+        plan. This is only used if GT Indicator is 0100.
+        Value of this parameter will be placed into
+        CalledPartyAddress. This parameter is mandatory if GT
+        Indicator suppose this parameter is included into GT.
+        Most used value: 4 - nature-of-address - International
+    <digits>    -    The global title address information to translate
+        to. Specified as string of digits divided into
+        subsections using separator '/' depending on if
+        the mask contains separator or not.
+        The digits string can contain:
+        DIGIT PATTERN
+        Value            Description
+        ----------------------------------
+        -        padding - ignored
+        /        separator used to split the digit
+                 pattern into sections.
+                 Each section is processed
+                 differently as specified by the
+                 mask parameter in the
+                 'sccp rule create' command.
+        We need this parameter if at least one section of Rule
+        mask contains "R" (replace) value. Else set this field
+        to "0". If this field is needed it should contain the
+        same subsections as the rule mask has.
+    Optional Parameters
+    <stack-name>    -    Name of the stack on which this command is executed.
+    If not passed, the first stack configured in ShellExecutor will be used.
+EXAMPLES
+    sccp address create 1 71 2 8 0 0 3 123456789

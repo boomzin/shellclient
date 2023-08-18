@@ -101,6 +101,13 @@ public class ClientCommand {
             "delete"
     ));
 
+    private final Set<String> sccpAddressParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "create",
+            "modify",
+            "delete"
+    ));
+
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
 
@@ -409,6 +416,29 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_dest");
+            }
+        }
+
+        @ShellMethod(value = "sccp address 'parameter'. Handle SCCP Addresses.\n" +
+                "Type \"sccp address help\" to display list of parameters.\n" +
+                "Type \"sccp address 'parameter' help\" to display detail of parameter.\n", key = "sccp address")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_address(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpAddressParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_address_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp address " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_address");
             }
         }
 

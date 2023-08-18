@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp address show
+Type "sccp address show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp address create
+Type "sccp address create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp address modify
+Type "sccp address modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp address delete
+Type "sccp address delete help" to display details.
