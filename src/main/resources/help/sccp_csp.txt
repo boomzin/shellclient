@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp csp show
+Type "sccp csp show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp csp create
+Type "sccp csp create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp csp modify
+Type "sccp csp modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp csp delete
+Type "sccp csp delete help" to display details.
