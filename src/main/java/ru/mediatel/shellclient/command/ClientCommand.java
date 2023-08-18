@@ -59,6 +59,34 @@ public class ClientCommand {
             "remove"
     ));
 
+    private final Set<String> sccpSetGetParameters = new HashSet<>(Arrays.asList(
+            "sccpprotocolversion",
+            "periodoflogging",
+            "maxdatamessage",
+            "previewmode",
+            "reassemblytimerdelay",
+            "removespc",
+            "respectpc",
+            "ssttimerduration_increasefactor",
+            "ssttimerduration_max",
+            "ssttimerduration_min",
+            "zmarginxudtmessage",
+            "cc_timer_a",
+            "cc_timer_d",
+            "canrelay",
+            "connesttimerdelay",
+            "iastimerdelay",
+            "iartimerdelay",
+            "reltimerdelay",
+            "repeatreltimerdelay",
+            "inttimerdelay",
+            "guardtimerdelay",
+            "resettimerdelay",
+            "timerexecutors_threadcount",
+            "cc_algo",
+            "cc_blockingoutgoungsccpmessages"
+    ));
+
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
 
@@ -212,7 +240,7 @@ public class ClientCommand {
             }
         }
 
-        @ShellMethod(value = "m3ua set 'parameter'. Set m3ua parameters.\n" +
+        @ShellMethod(value = "m3ua set 'parameter'.\n" +
                 "Type \"m3ua set help\" to display list of parameters.\n" +
                 "Type \"m3ua set 'parameter' help\" to display detail of parameter.\n", key = "m3ua set")
         @ShellMethodAvailability("connectedCheck")
@@ -234,7 +262,7 @@ public class ClientCommand {
                 printHelp("m3ua_set");
             }
         }
-        @ShellMethod(value = "m3ua as 'parameter'. Set m3ua parameters.\n" +
+        @ShellMethod(value = "m3ua as 'parameter'.\n" +
                 "Type \"m3ua as help\" to display list of parameters.\n" +
                 "Type \"m3ua as 'parameter' help\" to display detail of parameter.\n", key = "m3ua as")
         @ShellMethodAvailability("connectedCheck")
@@ -256,7 +284,7 @@ public class ClientCommand {
                 printHelp("m3ua_as");
             }
         }
-        @ShellMethod(value = "m3ua route 'parameter'. Set m3ua parameters.\n" +
+        @ShellMethod(value = "m3ua route 'parameter'.\n" +
                 "Type \"m3ua route help\" to display list of parameters.\n" +
                 "Type \"m3ua route 'parameter' help\" to display detail of parameter.\n", key = "m3ua route")
         @ShellMethodAvailability("connectedCheck")
@@ -278,6 +306,53 @@ public class ClientCommand {
                 printHelp("m3ua_route");
             }
         }
+        @ShellMethod(value = "sccp get 'parameter'.\n" +
+                "Type \"sccp get help\" to display list of parameters.\n" +
+                "Type \"sccp get 'parameter' help\" to display detail of parameter.\n", key = "sccp get")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_get(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpSetGetParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_set_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp get " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_get");
+            }
+        }
+
+        @ShellMethod(value = "sccp set 'parameter'.\n" +
+                "Type \"sccp set help\" to display list of parameters.\n" +
+                "Type \"sccp set 'parameter' help\" to display detail of parameter.\n", key = "sccp set")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_set(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpSetGetParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_set_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp set " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_set");
+            }
+        }
+
+
     }
 
 }

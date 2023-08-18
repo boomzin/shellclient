@@ -1,0 +1,173 @@
+PARAMETER NAME
+    sccpprotocolversion
+Use the command:
+    sccp get sccpprotocolversion
+Type "sccp get sccpprotocolversion help" to display details.
+
+
+PARAMETER NAME
+    periodoflogging
+Use the command:
+    sccp get periodoflogging
+Type "sccp get periodoflogging help" to display details.
+
+
+PARAMETER NAME
+    maxdatamessage
+Use the command:
+    sccp get maxdatamessage
+Type "sccp get maxdatamessage help" to display details.
+
+
+PARAMETER NAME
+    previewmode
+Use the command:
+    sccp get previewmode
+Type "sccp get previewmode help" to display details.
+
+
+PARAMETER NAME
+    reassemblytimerdelay
+Use the command:
+    sccp get reassemblytimerdelay
+Type "sccp get reassemblytimerdelay help" to display details.
+
+
+PARAMETER NAME
+    removespc
+Use the command:
+    sccp get removespc
+Type "sccp get removespc help" to display details.
+
+
+PARAMETER NAME
+    respectpc
+Use the command:
+    sccp get respectpc
+Type "sccp get respectpc help" to display details.
+
+
+PARAMETER NAME
+    ssttimerduration_increasefactor
+Use the command:
+    sccp get ssttimerduration_increasefactor
+Type "sccp get ssttimerduration_increasefactor help" to display details.
+
+
+PARAMETER NAME
+    ssttimerduration_max
+Use the command:
+    sccp get ssttimerduration_max
+Type "sccp get ssttimerduration_max help" to display details.
+
+
+PARAMETER NAME
+    ssttimerduration_min
+Use the command:
+    sccp get ssttimerduration_min
+Type "sccp get ssttimerduration_min help" to display details.
+
+
+PARAMETER NAME
+    zmarginxudtmessage
+Use the command:
+    sccp get zmarginxudtmessage
+Type "sccp get zmarginxudtmessage help" to display details.
+
+
+PARAMETER NAME
+    cc_timer_a
+Use the command:
+    sccp get cc_timer_a
+Type "sccp get cc_timer_a help" to display details.
+
+
+PARAMETER NAME
+    cc_timer_d
+Use the command:
+    sccp get cc_timer_d
+Type "sccp get cc_timer_d help" to display details.
+
+
+PARAMETER NAME
+    canrelay
+Use the command:
+    sccp get canrelay
+Type "sccp get canrelay help" to display details.
+
+
+PARAMETER NAME
+    connesttimerdelay
+Use the command:
+    sccp get connesttimerdelay
+Type "sccp get connesttimerdelay help" to display details.
+
+
+PARAMETER NAME
+    iastimerdelay
+Use the command:
+    sccp get iastimerdelay
+Type "sccp get iastimerdelay help" to display details.
+
+
+PARAMETER NAME
+    iartimerdelay
+Use the command:
+    sccp get iartimerdelay
+Type "sccp get iartimerdelay help" to display details.
+
+
+PARAMETER NAME
+    reltimerdelay
+Use the command:
+    sccp get reltimerdelay
+Type "sccp get reltimerdelay help" to display details.
+
+
+PARAMETER NAME
+    repeatreltimerdelay
+Use the command:
+    sccp get repeatreltimerdelay
+Type "sccp get repeatreltimerdelay help" to display details.
+
+
+PARAMETER NAME
+    inttimerdelay
+Use the command:
+    sccp get inttimerdelay
+Type "sccp get inttimerdelay help" to display details.
+
+
+PARAMETER NAME
+    guardtimerdelay
+Use the command:
+    sccp get guardtimerdelay
+Type "sccp get guardtimerdelay help" to display details.
+
+
+PARAMETER NAME
+    resettimerdelay
+Use the command:
+    sccp get resettimerdelay
+Type "sccp get resettimerdelay help" to display details.
+
+
+PARAMETER NAME
+    timerexecutors_threadcount
+Use the command:
+    sccp get timerexecutors_threadcount
+Type "sccp get timerexecutors_threadcount help" to display details.
+
+
+PARAMETER NAME
+    cc_algo
+Use the command:
+    sccp get cc_algo
+Type "sccp get cc_algo help" to display details.
+
+
+PARAMETER NAME
+    cc_blockingoutgoungsccpmessages
+Use the command:
+    sccp get cc_blockingoutgoungsccpmessages
+Type "sccp get cc_blockingoutgoungsccpmessages help" to display details.
