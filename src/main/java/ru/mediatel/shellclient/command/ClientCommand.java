@@ -478,7 +478,7 @@ public class ClientCommand {
             }
         }
 
-        @ShellMethod(value = "sccp rss 'parameter'. Handle Remote Sub-Systems Points.\n" +
+        @ShellMethod(value = "sccp rss 'parameter'. Handle Remote Sub-Systems.\n" +
                 "Type \"sccp rss help\" to display list of parameters.\n" +
                 "Type \"sccp rss 'parameter' help\" to display detail of parameter.\n", key = "sccp rss")
         @ShellMethodAvailability("connectedCheck")
@@ -498,6 +498,29 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_rss");
+            }
+        }
+
+        @ShellMethod(value = "sccp lmr 'parameter'. Handle Long Message Rules.\n" +
+                "Type \"sccp lmr help\" to display list of parameters.\n" +
+                "Type \"sccp lmr 'parameter' help\" to display detail of parameter.\n", key = "sccp lmr")
+        @ShellMethodAvailability("connectedCheck")
+        public void sccp_lmr(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sccpExtensionParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sccp_lmr_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sccp lmr " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sccp_lmr");
             }
         }
 

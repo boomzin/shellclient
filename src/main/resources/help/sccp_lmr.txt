@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp lmr show
+Type "sccp lmr show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp lmr create
+Type "sccp lmr create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp lmr modify
+Type "sccp lmr modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp lmr delete
+Type "sccp lmr delete help" to display details.
