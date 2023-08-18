@@ -1,0 +1,26 @@
+PARAMETER NAME
+    show
+Use the command:
+    sccp dest show
+Type "sccp dest show help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+    sccp dest create
+Type "sccp dest create help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+    sccp dest modify
+Type "sccp dest modify help" to display details.
+
+
+PARAMETER NAME
+    delete
+Use the command:
+    sccp dest delete
+Type "sccp dest delete help" to display details.

@@ -1,0 +1,18 @@
+Name
+    sccp dest show
+SYNOPSIS
+    sccp dest show <sap-id> <id> stackname <stack-name>
+DESCRIPTION
+    This command is used to view the details of all Destinations specified for a
+    Service Access Point. If an <id> is specified in the command, it will only display
+    the details of the Destination identified by the value of the 'id' specified.
+PARAMETERS
+    Standard Parameters
+    <sap-id>    -    The id of the SAP whose Destination details are to be displayed.
+    Optional Parameters
+    <id>    -   The id of the Destination whose details are to be
+        displayed. If this parameter is not specified, the details
+        of all Destinations defined within the SAP 'sap-id' will
+        be displayed.
+    <stack-name>    -   Name of the stack on which this command is executed.
+        If not passed, the first stack configured in ShellExecutor will be used.
