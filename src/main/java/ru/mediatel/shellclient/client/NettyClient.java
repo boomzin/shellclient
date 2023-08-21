@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class NettyClient implements Runnable{
+public class NettyClient {
     public ChannelFuture future;
-    private final EventLoopGroup eventGroup = new NioEventLoopGroup();
+    private EventLoopGroup eventGroup;
 
     private String host;
     private int port;
@@ -38,13 +38,17 @@ public class NettyClient implements Runnable{
         this.port = port;
     }
 
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
     public boolean isConnected() {
         return connected;
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
 
-
+        eventGroup = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(eventGroup);
         bootstrap.channel(NioSocketChannel.class);
@@ -56,19 +60,11 @@ public class NettyClient implements Runnable{
             }
         });
 
-        try {
-            future = bootstrap.connect(host, port).sync();
-            connected = true;
-        } catch (InterruptedException e) {
-            clientHandler.setServerAnswer("Error: " + e.getMessage());
-            connected = false;
-        }
-
+        future = bootstrap.connect(host, port).sync();
+        connected = true;
     }
 
-    public void shutdown() throws Exception {
+    public void shutdown() {
         eventGroup.shutdownGracefully();
-        future.channel().closeFuture().sync();
-        connected = false;
     }
 }

@@ -19,12 +19,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ShellComponent
-@ConfigurationProperties(prefix="jss7-shell")
 public class ClientCommand {
     private final String STANDARD_PROMPT = "n2jss7 client ==> ";
     private final String CONNECTING_GREETING = "Try connect";
     private final String CONNECTING_ESTABLISHED = "Connection established successfully";
     private final NettyClient nettyClient;
+    private Thread clientThread;
     private final CustomPromptProvider promptProvider;
     private final ClientHandler clientHandler;
     private final ShellHelper shellHelper;
@@ -204,20 +204,24 @@ public class ClientCommand {
             printHelp("connect");
             return;
         }
+
         try {
             nettyClient.setHost(args[0]);
             nettyClient.setPort(Integer.parseInt(args[1]));
-            Thread clientThread = new Thread(nettyClient);
-            clientThread.start();
-            Thread.sleep(connectionTimeOut);
+            nettyClient.run();
             nettyClient.future.channel().writeAndFlush(CONNECTING_GREETING);
             Thread.sleep(connectionTimeOut);
-            if (CONNECTING_ESTABLISHED.equals(clientHandler.getServerAnswer())) {
-                shellHelper.printInfo(clientHandler.getServerAnswer());
+
+            if (!CONNECTING_ESTABLISHED.equals(clientHandler.getServerAnswer())) {
+                throw new Exception("Wrong server answer");
             }
-            Thread.sleep(connectionTimeOut);
+            shellHelper.printInfo(clientHandler.getServerAnswer());
         } catch (Exception e) {
             shellHelper.printWarning("Error: " + e.getMessage());
+            nettyClient.shutdown();
+            nettyClient.setConnected(false);
+            promptProvider.setShellPrefix(STANDARD_PROMPT);
+            clientHandler.setServerAnswer(null);
             return;
         }
 
@@ -250,14 +254,10 @@ public class ClientCommand {
                 printHelp("disconnect");
                 return;
             }
-            try {
-                nettyClient.shutdown();
-            } catch (Exception e) {
-                shellHelper.printWarning("Error: " + e.getMessage());
-                return;
-            }
             promptProvider.setShellPrefix(STANDARD_PROMPT);
             clientHandler.setServerAnswer(null);
+            nettyClient.setConnected(false);
+            nettyClient.shutdown();
         }
 
         @ShellMethod(value = "m3ua get 'parameter'. Retrieve the current settings of the parameter.\n" +

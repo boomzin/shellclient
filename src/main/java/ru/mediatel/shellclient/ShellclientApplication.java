@@ -1,16 +1,15 @@
 package ru.mediatel.shellclient;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class ShellclientApplication {
 
 	public static void main(String[] args) {
-//		SpringApplication.run(ShellclientApplication.class, args);
 		SpringApplication application = new SpringApplication(ShellclientApplication.class);
 		application.setLogStartupInfo(false);
 		application.setBannerMode(Banner.Mode.OFF);
