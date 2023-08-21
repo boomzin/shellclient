@@ -1,0 +1,40 @@
+PARAMETER NAME
+    show
+Use the command:
+   sctp server show
+Type "sctp server show help" to display details.
+
+
+PARAMETER NAME
+    modify
+Use the command:
+   sctp server modify
+Type "sctp server modify help" to display details.
+
+
+PARAMETER NAME
+    create
+Use the command:
+   sctp server create
+Type "sctp server create help" to display details.
+
+
+PARAMETER NAME
+    destroy
+Use the command:
+   sctp server destroy
+Type "sctp server destroy help" to display details.
+
+
+PARAMETER NAME
+    start
+Use the command:
+   sctp server start
+Type "sctp server start help" to display details.
+
+
+PARAMETER NAME
+    stop
+Use the command:
+   sctp stop
+Type "sctp server stop help" to display details.

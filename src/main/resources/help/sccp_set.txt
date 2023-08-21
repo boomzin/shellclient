@@ -1,36 +1,36 @@
 PARAMETER NAME
     sccpprotocolversion
 Use the command:
-    sccp setsccpprotocolversion
-Type "sccp setsccpprotocolversion help" to display details.
+    sccp set sccpprotocolversion
+Type "sccp set sccpprotocolversion help" to display details.
 
 
 PARAMETER NAME
     periodoflogging
 Use the command:
-    sccp setperiodoflogging
-Type "sccp setperiodoflogging help" to display details.
+    sccp set periodoflogging
+Type "sccp set periodoflogging help" to display details.
 
 
 PARAMETER NAME
     maxdatamessage
 Use the command:
-    sccp setmaxdatamessage
-Type "sccp setmaxdatamessage help" to display details.
+    sccp set maxdatamessage
+Type "sccp set maxdatamessage help" to display details.
 
 
 PARAMETER NAME
     previewmode
 Use the command:
-    sccp setpreviewmode
-Type "sccp setpreviewmode help" to display details.
+    sccp set previewmode
+Type "sccp set previewmode help" to display details.
 
 
 PARAMETER NAME
     reassemblytimerdelay
 Use the command:
-    sccp setreassemblytimerdelay
-Type "sccp setreassemblytimerdelay help" to display details.
+    sccp set reassemblytimerdelay
+Type "sccp set reassemblytimerdelay help" to display details.
 
 
 PARAMETER NAME

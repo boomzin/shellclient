@@ -97,6 +97,34 @@ public class ClientCommand {
             "delete"
     ));
 
+    private final Set<String> sctpSetGetParameters = new HashSet<>(Arrays.asList(
+            "connectdelay",
+            "cc_delaythreshold_1",
+            "cc_delaythreshold_2",
+            "cc_delaythreshold_3",
+            "cc_backtonormal_delaythreshold_1",
+            "cc_backtonormal_delaythreshold_2",
+            "cc_backtonormal_delaythreshold_3"
+    ));
+
+    private final Set<String> sctpServerParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "modify",
+            "create",
+            "destroy",
+            "start",
+            "stop"
+    ));
+
+    private final Set<String> sctpAssociationParameters = new HashSet<>(Arrays.asList(
+            "show",
+            "modify",
+            "create",
+            "destroy"
+    ));
+
+
+
 
     @Value("${connectionTimeOut}")
     private int connectionTimeOut;
@@ -544,6 +572,98 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sccp_csp");
+            }
+        }
+
+        @ShellMethod(value = "sctp set 'parameter'. Manage SCTP stack properties.\n" +
+                "Type \"sctp set help\" to display list of parameters.\n" +
+                "Type \"sctp set 'parameter' help\" to display detail of parameter.\n", key = "sctp set")
+        @ShellMethodAvailability("connectedCheck")
+        public void sctp_set(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sctpSetGetParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sctp_set_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sctp set " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sctp_set");
+            }
+        }
+
+        @ShellMethod(value = "sctp get 'parameter'. Manage SCTP stack properties.\n" +
+                "Type \"sctp get help\" to display list of parameters.\n" +
+                "Type \"sctp get 'parameter' help\" to display detail of parameter.\n", key = "sctp get")
+        @ShellMethodAvailability("connectedCheck")
+        public void sctp_get(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sctpSetGetParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sctp_get_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sctp get " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sctp_set");
+            }
+        }
+
+        @ShellMethod(value = "sctp server 'parameter'. Manage SCTP server instance.\n" +
+                "Type \"sctp server help\" to display list of parameters.\n" +
+                "Type \"sctp server 'parameter' help\" to display detail of parameter.\n", key = "sctp server")
+        @ShellMethodAvailability("connectedCheck")
+        public void sctp_server(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sctpServerParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sctp_server_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sctp server " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sctp_server");
+            }
+        }
+
+        @ShellMethod(value = "sctp association 'parameter'. Manage SCTP Association.\n" +
+                "Type \"sctp association help\" to display list of parameters.\n" +
+                "Type \"sctp association 'parameter' help\" to display detail of parameter.\n", key = "sctp association")
+        @ShellMethodAvailability("connectedCheck")
+        public void sctp_association(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0 && sctpAssociationParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("sctp_association_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("sctp association " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("sctp_association");
             }
         }
 
