@@ -36,5 +36,5 @@ Type "sctp server start help" to display details.
 PARAMETER NAME
     stop
 Use the command:
-   sctp stop
+   sctp server stop
 Type "sctp server stop help" to display details.

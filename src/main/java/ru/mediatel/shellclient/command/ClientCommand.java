@@ -123,6 +123,32 @@ public class ClientCommand {
             "destroy"
     ));
 
+    private final Set<String> tcapSetGetParameters = new HashSet<>(Arrays.asList(
+            "dialogidletimeout",
+            "dialogidrangeend",
+            "dialogidrangestart",
+            "donotsendprotocolversion",
+            "invoketimeout",
+            "maxdialogs",
+            "previewmode",
+            "statisticsenabled",
+            "swaptcapidbytes",
+            "executordelaythreshold_1",
+            "executordelaythreshold_2",
+            "executordelaythreshold_3",
+            "executorbacktonormaldelaythreshold_1",
+            "executorbacktonormaldelaythreshold_2",
+            "executorbacktonormaldelaythreshold_3",
+            "memorythreshold_1",
+            "memorythreshold_2",
+            "memorythreshold_3",
+            "backtonormalmemorythreshold_1",
+            "backtonormalmemorythreshold_2",
+            "backtonormalmemorythreshold_3",
+            "blockingincomingtcapmessages",
+            "slsrange"
+    ));
+
 
 
 
@@ -664,6 +690,56 @@ public class ClientCommand {
                 }
             } else {
                 printHelp("sctp_association");
+            }
+        }
+
+        @ShellMethod(value = "tcap set 'parameter'. Manage TCAP configurations.\n" +
+                "Type \"tcap set help\" to display list of parameters.\n" +
+                "Type \"tcap set 'parameter' help\" to display detail of parameter.\n", key = "tcap set")
+        @ShellMethodAvailability("connectedCheck")
+        public void tcap_set(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0
+                    && tcapSetGetParameters.contains(args[0])
+                    && !"previewmode".equals(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("tcap_set_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("tcap set " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("tcap_set");
+            }
+        }
+
+
+        @ShellMethod(value = "tcap get 'parameter'. Manage TCAP configurations.\n" +
+                "Type \"tcap get help\" to display list of parameters.\n" +
+                "Type \"tcap get 'parameter' help\" to display detail of parameter.\n", key = "tcap get")
+        @ShellMethodAvailability("connectedCheck")
+        public void tcap_get(@ShellOption(arity = 10) String[] args) {
+            if (args.length > 0
+                    && tcapSetGetParameters.contains(args[0])) {
+                String command = String.join(" ", args);
+                if (command.contains("help")) {
+                    printHelp("tcap_get_" + args[0]);
+                    return;
+                }
+                try {
+                    nettyClient.future.channel().writeAndFlush("tcap get " + command);
+                    Thread.sleep(connectionTimeOut);
+                    shellHelper.printInfo(clientHandler.getServerAnswer());
+                } catch (InterruptedException e) {
+                    shellHelper.printWarning("Error: " + e.getMessage());
+                }
+            } else {
+                printHelp("tcap_et");
             }
         }
 

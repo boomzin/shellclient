@@ -1,0 +1,159 @@
+PARAMETER NAME
+    dialogidletimeout
+Use the command:
+   tcap get dialogidletimeout
+Type "tcap get dialogidletimeout help" to display details.
+
+
+PARAMETER NAME
+    dialogidrangeend
+Use the command:
+   tcap get dialogidrangeend
+Type "tcap get dialogidrangeend help" to display details.
+
+
+PARAMETER NAME
+    dialogidrangestart
+Use the command:
+   tcap get dialogidrangestart
+Type "tcap get dialogidrangestart help" to display details.
+
+
+PARAMETER NAME
+    donotsendprotocolversion
+Use the command:
+   tcap get donotsendprotocolversion
+Type "tcap get donotsendprotocolversion help" to display details.
+
+
+PARAMETER NAME
+    invoketimeout
+Use the command:
+   tcap get invoketimeout
+Type "tcap get invoketimeout help" to display details.
+
+
+PARAMETER NAME
+    maxdialogs
+Use the command:
+   tcap get maxdialogs
+Type "tcap get maxdialogs help" to display details.
+
+
+PARAMETER NAME
+    statisticsenabled
+Use the command:
+   tcap get statisticsenabled
+Type "tcap get statisticsenabled help" to display details.
+
+
+PARAMETER NAME
+    swaptcapidbytes
+Use the command:
+   tcap get swaptcapidbytes
+Type "tcap get swaptcapidbytes help" to display details.
+
+
+PARAMETER NAME
+    executordelaythreshold_1
+Use the command:
+   tcap get executordelaythreshold_1
+Type "tcap get executordelaythreshold_1 help" to display details.
+
+
+PARAMETER NAME
+    executordelaythreshold_2
+Use the command:
+   tcap get executordelaythreshold_2
+Type "tcap get executordelaythreshold_2 help" to display details.
+
+
+PARAMETER NAME
+    executordelaythreshold_3
+Use the command:
+   tcap get executordelaythreshold_3
+Type "tcap get executordelaythreshold_3 help" to display details.
+
+
+PARAMETER NAME
+    executorbacktonormaldelaythreshold_1
+Use the command:
+   tcap get executorbacktonormaldelaythreshold_1
+Type "tcap get executorbacktonormaldelaythreshold_1 help" to display details.
+
+
+PARAMETER NAME
+    executorbacktonormaldelaythreshold_2
+Use the command:
+   tcap get executorbacktonormaldelaythreshold_2
+Type "tcap get executorbacktonormaldelaythreshold_2 help" to display details.
+
+
+PARAMETER NAME
+    executorbacktonormaldelaythreshold_3
+Use the command:
+   tcap get executorbacktonormaldelaythreshold_3
+Type "tcap get executorbacktonormaldelaythreshold_3 help" to display details.
+
+
+PARAMETER NAME
+    memorythreshold_1
+Use the command:
+   tcap get memorythreshold_1
+Type "tcap get memorythreshold_1 help" to display details.
+
+
+PARAMETER NAME
+    memorythreshold_2
+Use the command:
+   tcap get memorythreshold_2
+Type "tcap get memorythreshold_2 help" to display details.
+
+
+PARAMETER NAME
+    memorythreshold_3
+Use the command:
+   tcap get memorythreshold_3
+Type "tcap get memorythreshold_3 help" to display details.
+
+
+PARAMETER NAME
+    backtonormalmemorythreshold_1
+Use the command:
+   tcap get backtonormalmemorythreshold_1
+Type "tcap get backtonormalmemorythreshold_1 help" to display details.
+
+
+PARAMETER NAME
+    backtonormalmemorythreshold_2
+Use the command:
+   tcap get backtonormalmemorythreshold_2
+Type "tcap get backtonormalmemorythreshold_2 help" to display details.
+
+
+PARAMETER NAME
+    blockingincomingtcapmessages
+Use the command:
+   tcap get blockingincomingtcapmessages
+Type "tcap get blockingincomingtcapmessages help" to display details.
+
+
+PARAMETER NAME
+    blockingincomingtcapmessages
+Use the command:
+   tcap get blockingincomingtcapmessages
+Type "tcap get blockingincomingtcapmessages help" to display details.
+
+
+PARAMETER NAME
+    previewmode
+Use the command:
+   tcap get previewmode
+Type "tcap get previewmode help" to display details.
+
+
+PARAMETER NAME
+    slsrange
+Use the command:
+   tcap get slsrange
+Type "tcap get slsrange help" to display details.
